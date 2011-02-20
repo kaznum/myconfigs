@@ -41,7 +41,6 @@
 (yas/load-directory "~/elisp/yasnippet/snippets")
 (yas/load-directory "~/elisp/yasnippets-rails/rails-snippets")
 
-
 ;; highlight the line corresponding to "end"
 (require 'ruby-block)
 (ruby-block-mode t)
@@ -118,3 +117,4 @@
 	     (and (boundp 'skk-mode) skk-mode (skk-isearch-mode-cleanup))
 	     (and (boundp 'skk-mode-invoked) skk-mode-invoked
 		  (skk-set-cursor-properly)))))
+(setq yas/trigger-key 'TAB)
