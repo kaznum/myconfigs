@@ -57,8 +57,15 @@ export CFLAGS="-march=core2 -O2 -fomit-frame-pointer"
 export CXXFLAGS="-march=core2 -O2 -fomit-frame-pointer"
 
 alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
-alias mysql="/usr/local/mysql/bin/mysql"
+#alias mysql="/usr/local/mysql/bin/mysql"
 
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/sbin:/opt/local/bin:/usr/local/mysql/bin:/Users/kaz/.gem/ruby/1.8/bin:$PATH"
+#export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/sbin:/opt/local/bin:/usr/local/mysql/bin:/Users/kaz/.gem/ruby/1.8/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/sbin:/opt/local/bin:/Users/kaz/.gem/ruby/1.8/bin:$PATH"
 
+export RSENSE_HOME=/Users/kaz/opt/rsense
+
+# for mysql
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+
+export PATH="/usr/local/Cellar/gettext/0.18.1.1/bin:$PATH"
