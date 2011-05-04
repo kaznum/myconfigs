@@ -41,7 +41,7 @@
 ;; configuration of ido
 (require 'ido)
 (ido-mode t)
-(add-to-list 'load-path "~/.emacs.d/elpa/rinari-2.1")
+(add-to-list 'load-path "~/.emacs.d/from_git/rinari")
 (require 'rinari)
 
 ;; configuration of rhtml-mode
