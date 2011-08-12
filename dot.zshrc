@@ -69,3 +69,5 @@ export RSENSE_HOME=/Users/kaz/opt/rsense
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 
 export PATH="/usr/local/Cellar/gettext/0.18.1.1/bin:$PATH"
+export NODE_PATH="/usr/local/lib/node"
+
