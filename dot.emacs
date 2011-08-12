@@ -43,8 +43,11 @@
 
 
 ;; configuration of ido
-(require 'ido)
-(ido-mode t)
+;;; http://www.cua.dk/ido.html
+;;(require 'ido)
+;;(ido-mode t)
+
+;; rinari
 (add-to-list 'load-path "~/.emacs.d/from_git/rinari")
 (require 'rinari)
 
@@ -66,25 +69,27 @@
 (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
 (add-hook 'ruby-mode-hook '(lambda () (inf-ruby-keys)))
 
-;(require 'ruby-electric)
-;(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
-
 ;; display line number
 (global-linum-mode t)
 
+;; dabbrev
+;;; http://www.cua.dk/ido.html
 (global-set-key "\C-o" 'dabbrev-expand)
 
 (setq inhibit-startup-message t)
 (setq-default transient-mark-mode t)
 
-;; C-n(next-line)時に1行が複数行表示されている場合には、次の改行までスキップする
+;; Skip the line which is remaining of the previous line for C-n(next-line)
 (setq column-number-mode t)
 (setq line-move-visual nil)
 
+;; font-lock
 (require 'font-lock)
 (setq-default font-lock-maximum-decoration t)
 
+;; do not backup file
 (setq make-backup-files nil)
+;; do not autosave
 (setq auto-save-default nil)
 
 (add-hook 'ruby-mode-hook
@@ -94,9 +99,10 @@
              (setq ruby-indent-level tab-width)
              ))
 
-;;スクラッチバッファをからの状態にする
+;; make scratch buffer empty
 (setq initial-scratch-message nil)
-;; フォントの指定
+
+;; specify font setting
 (create-fontset-from-ascii-font "Menlo-10:weight=normal:slant=normal" nil "menlokakugo")
 (set-fontset-font "fontset-menlokakugo"
                   'unicode
@@ -145,10 +151,8 @@
 ;; (install-elisp "http://perso.tls.cena.fr/boubaker/distrib/mode-compile.el")
 (autoload 'mode-compile "mode-compile"
   "Command to compile current buffer file based on the major mode" t)
-;; (global-set-key "\C-cc" 'mode-compile)
 (autoload 'mode-compile-kill "mode-compile"
   "Command to kill a compilation launched by `mode-compile'" t)
-;; (global-set-key "\C-ck" 'mode-compile-kill)
 
 ;; rvm-mode
 (defadvice ido-completing-read (around invaild-ido-completing-read activate)
@@ -161,15 +165,14 @@
 The directory containing FILE becomes the initial working directory
 and source-file directory for your debugger.")
 
-;(require 'rdebug)
-
 ;; ruby-block
 ;; highlight the line corresponding to "end"
 (require 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
 
-(add-to-list 'load-path "/Users/kaz/.emacs.d/from_git/auto-complete")
+;; auto-complete
+(add-to-list 'load-path "~/.emacs.d/from_git/auto-complete")
 (require 'auto-complete)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
 (require 'auto-complete-config)
@@ -185,10 +188,6 @@ and source-file directory for your debugger.")
 (define-key ruby-mode-map "\C-cj" 'rsense-jump-to-definition)
 
 ;; C-c .で補完
-;(add-hook 'ruby-mode-hook
-;          (lambda ()
-;            (local-set-key (kbd "C-c .") 'rsense-complete)))
-;; C-c .で補完
 (add-hook 'ruby-mode-hook
           (lambda ()
             (local-set-key (kbd "C-c .") 'ac-complete-rsense)))
@@ -199,7 +198,7 @@ and source-file directory for your debugger.")
 
 
 ;; Coffee-mode
-(add-to-list 'load-path "/Users/kaz/.emacs.d/from_git/coffee-mode")
+(add-to-list 'load-path "~/.emacs.d/from_git/coffee-mode")
 (require 'coffee-mode)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (defun coffee-custom ()
@@ -208,12 +207,13 @@ and source-file directory for your debugger.")
 (add-hook 'coffee-mode-hook '(lambda() (coffee-custom)))
 
 ;;SCSS
-(add-to-list 'load-path "/Users/kaz/.emacs.d/from_git/scss-mode")
+(add-to-list 'load-path "~/.emacs.d/from_git/scss-mode")
 (require 'scss-mode)
 
-(add-to-list 'load-path "/Users/kaz/.emacs.d/from_git/cucumber")
+;; Cucumber-mode
+(add-to-list 'load-path "~/.emacs.d/from_git/cucumber")
 (require 'feature-mode)
 
 ;; anything
-(add-to-list 'load-path "/Users/kaz/.emacs.d/auto-install")
+(add-to-list 'load-path "~/.emacs.d/auto-install")
 (require 'anything-startup)
