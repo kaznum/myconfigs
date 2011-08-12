@@ -25,6 +25,10 @@
 (setq process-coding-system-alist
       (cons '("svn" . utf-8) process-coding-system-alist))
 
+;; Git mode
+(add-to-list 'load-path "/usr/local/Cellar/git/1.7.6/share/doc/git-core/contrib/emacs")
+(require 'git)
+
 ;; YAML mode
 (add-to-list 'load-path "~/elisp/yaml-mode")
 ;;; yaml-mode の設定
@@ -57,12 +61,6 @@
 (yas/initialize)
 (yas/load-directory "~/elisp/yasnippet/snippets")
 (yas/load-directory "~/elisp/yasnippets-rails/rails-snippets")
-
-;; highlight the line corresponding to "end"
-(require 'ruby-block)
-(ruby-block-mode t)
-(setq ruby-block-highlight-toggle t)
-
 
 (autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
 (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
@@ -136,8 +134,6 @@
 		  (skk-set-cursor-properly)))))
 (setq yas/trigger-key 'TAB)
 
-
-
 ;; ruby-mode
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rjs$" . ruby-mode))
@@ -165,13 +161,13 @@
 The directory containing FILE becomes the initial working directory
 and source-file directory for your debugger.")
 
-;; ruby-block
-(require 'ruby-block)
-(setq ruby-block-highlight-toggle t)
-(defun ruby-mode-hook-ruby-block()
-  (ruby-block-mode t))
-(add-hook 'ruby-mode-hook 'ruby-mode-hook-ruby-block)
+;(require 'rdebug)
 
+;; ruby-block
+;; highlight the line corresponding to "end"
+(require 'ruby-block)
+(ruby-block-mode t)
+(setq ruby-block-highlight-toggle t)
 
 (add-to-list 'load-path "/Users/kaz/.emacs.d/from_git/auto-complete")
 (require 'auto-complete)
@@ -189,9 +185,9 @@ and source-file directory for your debugger.")
 (define-key ruby-mode-map "\C-cj" 'rsense-jump-to-definition)
 
 ;; C-c .で補完
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c .") 'rsense-complete)))
+;(add-hook 'ruby-mode-hook
+;          (lambda ()
+;            (local-set-key (kbd "C-c .") 'rsense-complete)))
 ;; C-c .で補完
 (add-hook 'ruby-mode-hook
           (lambda ()
@@ -209,9 +205,15 @@ and source-file directory for your debugger.")
 (defun coffee-custom ()
   "coffee-mode-hook"
   (set (make-local-variable 'tab-width) 2))
-
 (add-hook 'coffee-mode-hook '(lambda() (coffee-custom)))
 
 ;;SCSS
 (add-to-list 'load-path "/Users/kaz/.emacs.d/from_git/scss-mode")
 (require 'scss-mode)
+
+(add-to-list 'load-path "/Users/kaz/.emacs.d/from_git/cucumber")
+(require 'feature-mode)
+
+;; anything
+(add-to-list 'load-path "/Users/kaz/.emacs.d/auto-install")
+(require 'anything-startup)
