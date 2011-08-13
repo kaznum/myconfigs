@@ -41,12 +41,6 @@
              (setq comment-end-skip "$")
              (set (make-local-variable 'comment-style) 'indent) ))
 
-
-;; configuration of ido
-;;; http://www.cua.dk/ido.html
-;;(require 'ido)
-;;(ido-mode t)
-
 ;; rinari
 (add-to-list 'load-path "~/.emacs.d/from_git/rinari")
 (require 'rinari)
@@ -89,6 +83,7 @@
 
 ;; do not backup file
 (setq make-backup-files nil)
+
 ;; do not autosave
 (setq auto-save-default nil)
 
@@ -120,18 +115,11 @@
 
 (require 'skk-autoloads)
 (global-set-key "\C-x\C-j" 'skk-mode)
-;(global-set-key "\C-xj" 'skk-auto-fill-mode)
-;(global-set-key "\C-xt" 'skk-tutorial)
-;; Specify dictionary location
 (setq skk-large-jisyo "/Users/kaz/Library/Application Support/AquaSKK/SKK-JISYO.L")
-;; Specify tutorial location
-;(setq skk-tut-file "/usr/share/skk/SKK.tut")
-
 (add-hook 'isearch-mode-hook
 	  (function (lambda ()
 		      (and (boundp 'skk-mode) skk-mode
 			   (skk-isearch-mode-setup)))))
-
 (add-hook 'isearch-mode-end-hook
 	  (function
 	   (lambda ()
