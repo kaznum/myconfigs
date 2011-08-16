@@ -26,8 +26,10 @@
       (cons '("svn" . utf-8) process-coding-system-alist))
 
 ;; Git mode
-(add-to-list 'load-path "/usr/local/Cellar/git/1.7.6/share/doc/git-core/contrib/emacs")
-(require 'git)
+;; Magit
+(add-to-list 'load-path "/usr/local/Cellar/magit/1.0.0/share/emacs/site-lisp")
+(require 'magit)
+(require 'magit-svn)
 
 ;; YAML mode
 (add-to-list 'load-path "~/elisp/yaml-mode")
