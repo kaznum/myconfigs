@@ -1,5 +1,6 @@
-(setq load-path (cons "~/elisp" load-path))
-(add-to-list 'load-path "~/elisp/ruby")
+(setq load-path (cons "~/.emacs.d" load-path))
+(add-to-list 'load-path "~/.emacs.d/auto-install")
+(add-to-list 'load-path "~/.emacs.d/ruby")
 (require 'auto-install)
 (setq auto-install-directory "~/.emacs.d/auto-install/")
 ;;(auto-install-update-emacswiki-package-name t)
@@ -14,10 +15,6 @@
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
 
-;(add-to-list 'load-path "~/.emacs.d/elpa/ruby-mode-1.1")
-;(add-to-list 'load-path "~/.emacs.d/elpa/ruby-electric-1.1")
-;(add-to-list 'load-path "~/.emacs.d/elpa/ruby-test-mode-1.0")
-
 ;; SVN mode
 (require 'psvn)
 (autoload 'svn-status "psvn" nil t)
@@ -27,7 +24,7 @@
 
 ;; Git mode
 ;; Magit
-(add-to-list 'load-path "/usr/local/Cellar/magit/1.0.0/share/emacs/site-lisp")
+(add-to-list 'load-path "~/.emacs.d/from_git/magit")
 (require 'magit)
 (require 'magit-svn)
 
@@ -44,22 +41,22 @@
              (set (make-local-variable 'comment-style) 'indent) ))
 
 ;; rinari
-(add-to-list 'load-path "~/.emacs.d/from_git/rinari")
+;;; required inf-ruby
 (require 'rinari)
 
 ;; configuration of rhtml-mode
-(add-to-list 'load-path "~/elisp/rhtml")
+(add-to-list 'load-path "~/.emacs.d/from_git/rhtml")
 (require 'rhtml-mode)
 (add-hook 'rhtml-mode-hook
 	(lambda () (rinari-launch)))
 
 ;; configuration of yasnippet/rails-snippets
 (add-to-list 'load-path
-	     "~/elisp/yasnippet")
+	     "~/.emacs.d/from_git/yasnippet")
 (require 'yasnippet) ;; not yasnippet-bundle
 (yas/initialize)
-(yas/load-directory "~/elisp/yasnippet/snippets")
-(yas/load-directory "~/elisp/yasnippets-rails/rails-snippets")
+(yas/load-directory "~/.emacs.d/from_git/yasnippet/snippets")
+(yas/load-directory "~/.emacs.d/from_git/yasnippets-rails/rails-snippets")
 
 (autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
 (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
@@ -109,25 +106,24 @@
 (add-to-list 'default-frame-alist '(font . "fontset-menlokakugo"))
 
 ;; Configure for SKK
-(defvar system-load-path load-path)
-(setq my-load-path '("/Applications/Emacs.app/Contents/Resources/site-lisp/skk"
-		     "/Applications/Emacs.app/Contents/Resources/site-lisp/apel"
-		     "/Applications/Emacs.app/Contents/Resources/site-lisp/emu"))
-(setq load-path (append my-load-path system-load-path))
-
-(require 'skk-autoloads)
-(global-set-key "\C-x\C-j" 'skk-mode)
-(setq skk-large-jisyo "/Users/kaz/Library/Application Support/AquaSKK/SKK-JISYO.L")
-(add-hook 'isearch-mode-hook
-	  (function (lambda ()
-		      (and (boundp 'skk-mode) skk-mode
-			   (skk-isearch-mode-setup)))))
-(add-hook 'isearch-mode-end-hook
-	  (function
-	   (lambda ()
-	     (and (boundp 'skk-mode) skk-mode (skk-isearch-mode-cleanup))
-	     (and (boundp 'skk-mode-invoked) skk-mode-invoked
-		  (skk-set-cursor-properly)))))
+;(defvar system-load-path load-path)
+;(setq my-load-path '("/Applications/Emacs.app/Contents/Resources/site-lisp/skk"
+;		     "/Applications/Emacs.app/Contents/Resources/site-lisp/apel"
+;		     "/Applications/Emacs.app/Contents/Resources/site-lisp/emu"))
+;(setq load-path (append my-load-path system-load-path))
+;(require 'skk-autoloads)
+;(global-set-key "\C-x\C-j" 'skk-mode)
+;(setq skk-large-jisyo "/Users/kaz/Library/Application Support/AquaSKK/SKK-JISYO.L")
+;(add-hook 'isearch-mode-hook
+;	  (function (lambda ()
+;		      (and (boundp 'skk-mode) skk-mode
+;			   (skk-isearch-mode-setup)))))
+;(add-hook 'isearch-mode-end-hook
+;	  (function
+;	   (lambda ()
+;	     (and (boundp 'skk-mode) skk-mode (skk-isearch-mode-cleanup))
+;	     (and (boundp 'skk-mode-invoked) skk-mode-invoked
+;		  (skk-set-cursor-properly)))))
 (setq yas/trigger-key 'TAB)
 
 ;; ruby-mode
@@ -169,7 +165,7 @@ and source-file directory for your debugger.")
 (ac-config-default)
 
 ;;rsense
-(setq rsense-home (expand-file-name "~/opt/rsense/"))
+(setq rsense-home (expand-file-name "~/.emacs.d/from_git/rsense/"))
 ;;(setq rsense-rurema-home "~/opt/rurema")
 (add-to-list 'load-path (concat rsense-home "/etc"))
 (require 'rsense)
@@ -196,14 +192,15 @@ and source-file directory for your debugger.")
   (set (make-local-variable 'tab-width) 2))
 (add-hook 'coffee-mode-hook '(lambda() (coffee-custom)))
 
-;;SCSS
-(add-to-list 'load-path "~/.emacs.d/from_git/scss-mode")
-(require 'scss-mode)
+;;SASS
+;;(add-to-list 'load-path "~/.emacs.d/from_git/scss-mode")
+(require 'sass-mode)
 
 ;; Cucumber-mode
-(add-to-list 'load-path "~/.emacs.d/from_git/cucumber")
+(add-to-list 'load-path "~/.emacs.d/from_git/cucumber.el")
 (require 'feature-mode)
 
 ;; anything
-(add-to-list 'load-path "~/.emacs.d/auto-install")
-(require 'anything-startup)
+(add-to-list 'load-path "~/.emacs.d/from_git/anything-config")
+(require 'anything-config)
+
