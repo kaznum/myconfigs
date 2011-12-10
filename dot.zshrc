@@ -11,6 +11,9 @@ setopt nolistbeep
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 
+#alias ls="ls -G"
+#alias ls="ls --color"
+
 zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
 
@@ -50,11 +53,21 @@ esac
 # for Git
 export GIT_SSL_NO_VERIFY=true
 
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+export CFLAGS="-march=core2 -O2 -fomit-frame-pointer"
+export CXXFLAGS="-march=core2 -O2 -fomit-frame-pointer"
 
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+#alias mysql="/usr/local/mysql/bin/mysql"
+
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+#export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/sbin:/opt/local/bin:/usr/local/mysql/bin:/Users/kaz/.gem/ruby/1.8/bin:$PATH"
 export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/sbin:/opt/local/bin:/Users/kaz/.gem/ruby/1.8/bin:$PATH"
 
-alias emacs="/usr/local/Cellar/emacs/23.3b/Emacs.app/Contents/MacOS/Emacs"
+export RSENSE_HOME=/Users/kaz/opt/rsense
 
-export NODE_PATH=/usr/local/lib/node_modules
+# for mysql
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+
+export PATH="/usr/local/Cellar/gettext/0.18.1.1/bin:$PATH"
+export NODE_PATH="/usr/local/lib/node"
 
