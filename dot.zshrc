@@ -55,3 +55,6 @@ export GIT_SSL_NO_VERIFY=true
 export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/sbin:/opt/local/bin:/Users/kaz/.gem/ruby/1.8/bin:$PATH"
 
 alias emacs="/usr/local/Cellar/emacs/23.3b/Emacs.app/Contents/MacOS/Emacs"
+
+export NODE_PATH=/usr/local/lib/node_modules
+
